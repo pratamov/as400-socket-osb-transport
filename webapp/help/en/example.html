@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+
+<!-- LOCALIZATION RELATED INFORMATION -->
+<meta name="LOC_PROJ_ID" content="WLPF8.1" />
+<meta name="LOC_OWNER" content="BEAJ" />
+<meta name="LOC_STATUS" content="READY!" />
+<meta name="LOC_COMMENT" content="LOC_COMMENT" />
+<meta name="LOC_US_REV" content="31" />
+<meta name="LOC_US_CHANGE" content="844942" />
+<meta name="LOC_US_SRCFILE" content="//depot/docs/servicebus/src/ebooks/transportsdk/fm/example.fm" />
+<!-- LOCALIZATION RELATED INFORMATION -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="GENERATOR" content="Quadralay WebWorks AutoMap 2003 Platinum Edition for FrameMaker 8.6.6577.0" />
+    <meta name="TEMPLATEBASE" content="BEA_WFP_Template_V1.01" />
+    <meta name="LASTUPDATED" content="01/09/07 11:37:00" />
+    <link rel="StyleSheet" href="edocs.css" type="text/css" media="all" />
+
+<title>Sample Socket Transport Provider</title>
+</head>
+<body>
+<h2 class="pHeading1"><a name="wp1036577"> </a>
+Configuring the Socket Transport Sample
+</h2><p class="pBody"><a name="wp1039800"> </a>
+The sample consists of a test server and a test client. The client sends a message to the server. You configure Oracle Service Bus to receive and process the message.
+</p>
+<p class="pBody"><a name="wp1039816"> </a>
+Perform the following tasks to create a sample project for the socket transport:
+</p>
+<div class="pSmartList1Bullet"><ul>
+<li><a name="wp1039817"> </a><a href="example.html#wp1039801">Create a New Project</a></li>
+<li><a name="wp1039825"> </a><a href="example.html#wp1037227">Create a Business Service</a></li>
+<li><a name="wp1039834"> </a><a href="example.html#wp1037399">Create a Proxy Service</a></li>
+<li><a name="wp1039843"> </a><a href="example.html#wp1037448">Create a Pipeline</a></li>
+<li><a name="wp1030399"> </a><a href="example.html#wp1038399">Connect the Proxy Service and Pipeline</a></li>
+</ul></div>
+<h3 class="pHeading2"><a name="wp1039801"> </a>
+Create a New Project
+</h3>
+<p>The first step to creating the sample is to create the actual project that will contain the Service Bus resources.</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<li><p><a name="wp1039802"> </a>Start the Oracle Service Bus Console and either create a new session or edit an existing session.</p></li>
+<li><p><a name="wp1039805"> </a>In the Project Navigator, right-click <b class="cBold">All Projects</b>, point to <b class="cBold">Create</b>, and select <b class="cBold">Project</b>.</p></li>
+<li><p><a name="wp1037234"> </a>On the Create a New Project dialog, enter <code class="cCode">SocketTest</code> in the <b class="cBold">Resource Name</b> field, as shown in <a href="example.html#wp1037281">Figure&#160;6-1</a>.</p>
+<div class="pFigureTitle"><a name="wp1037281"> </a>
+Figure&#160;6-1  Adding a New Project</div>
+
+
+ <p class="pGraphic"><a name="wp1037285"> </a>
+<br />
+<img src="wwimages/addProject.gif" alt="Adding a New Project" id="wp1037286"/><br />
+</p></li>
+<li><p><a name="wp1037235"> </a>Click <b class="cBold">Create</b>.</p>
+<p>The new project appears in the project table.</p> </li>
+</ol>
+</div>
+<h3 class="pHeading2"><a name="wp1037227"> </a>
+Create a Business Service
+</h3>
+<p class="pBody"><a name="wp1037299"> </a>
+In the sample project, you need to create a business service to talk to the server.
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<li><p><a name="wp1037300"> </a>In the Project Navigator, right-click the <b class="cBold">SocketTest</b> project, point to <b class="cBold">Create</b>, and select <b class="cBold">Business Service</b>.</p>
+<p>The Create Business Service wizard appears.</p>
+</li>
+<li><p>In the <b class="cBold">Resource Name</b> field, enter <code class="cCode">SocketBS</code>.</p></li>
+<li><p><a name="wp1037308"> </a>In the <b class="cBold">Transport</b> field, select <code class="cCode">socket</code>, as shown in <a href="example.html#wp1037316">Figure&#160;6-2</a>.</p>
+<div class="pFigureTitle"><a name="wp1037316"> </a>
+Figure&#160;6-2  Create Business Service Wizard - Create Page</div>
+
+
+ <p class="pGraphic"><a name="wp1037320"> </a>
+<br />
+<img src="wwimages/createResource-BS.gif" alt="Create Business Service" /><br />
+</p></li>
+<li><p>Click <b class="cBold">Next</b>.</p>
+<p>The Type page of the Create Business Service wizard appears.</p></li>
+<li><p><a name="wp1037340"> </a>For the <b class="cBold">Service Type</b>, select <code class="cCode">Any XML Service</code>. Click <b class="cBold">Next.</b>. </p>
+<p>The Transport page of the Create Business Service wizard appears.</p></li>
+<li><p><a name="wp1037347"> </a>In the <b class="cBold">Endpoint URI</b> field, enter <code class="cCode">tcp://localhost:7031</code>, as shown in <a href="example.html#wp1037351">Figure&#160;6-3</a>.</p> 
+<div class="pFigureTitle"><a name="wp1037351"> </a>
+Figure&#160;6-3  Create Business Service Wizard - Transport Page</div>
+
+
+ <p class="pGraphic"><a name="wp1037355"> </a>
+<br />
+<img src="wwimages/selectProtocol.gif" alt="Specifying the Endpoint URI" id="wp1037356"/><br />
+</p></li>
+<li><p><a name="wp1037379"> </a>Click <b class="cBold">Create</b>. </p>
+<p>The business service appears in the Business Service Definition Editor. You can click the different subtabs to view the configuration.</p></li>
+<li><p><a name="wp1037384"> </a>Click <b class="cBold">Save</b>.</p> </li>
+</ol>
+</div>
+
+<h3 class="pHeading2"><a name="wp1037399"> </a>
+Create a Proxy Service
+</h3>
+<p class="pBody"><a name="wp1039864"> </a>
+In this section, you create a proxy service to accept messages from the client.</p>
+<div class="pSmartList1">
+  <ol type="1" class="pSmartList1">
+<li><p><a name="wp1037418"> </a>In the Project Navigator, right-click the <b class="cBold">SocketTest</b> project, point to <b class="cBold">Create</b>, and select <b class="cBold">Proxy Service</b>.</p>
+<p>The Create Proxy Service wizard appears.</p> </li>
+<li><p><a name="wp1037082"> </a>In the <b class="cBold">Resource Name</b> field, enter <code class="cCode">SocketProxy</code>.</p> </li>
+<li><p><a name="wp1037467" id="wp1037467"> </a>In the <b class="cBold">Transport</b> field, select <code class="cCode">socket</code>, as shown in <a href="example.html#wp1037425">Figure&#160;6-4</a>.</p> 
+<div class="pFigureTitle"><a name="wp1037425"> </a> Figure&#160;6-4  Creating a Proxy Service</div>
+<p class="pGraphic"><a name="wp1037429"> </a>
+    <br />
+    <img src="wwimages/serviceProxy.gif" alt="Create Proxy Service" />
+</p><br /></li>
+
+<li><p>Click <b class="cBold">Next</b>. </p>
+<p>The Type page of the Create Proxy Service wizard appears.</p></li>
+<li><p><a name="wp1037457"> </a>In the <b class="cBold">Service Type</b> field, select <code class="cCode">Any XML Service</code>. Click <b class="cBold">Next</b>.</p></li>
+<li><p><a name="wp1037474"> </a>In the <b class="cBold">Endpoint URI</b> field, change the default URI to <code class="cCode">7032</code>.</p></li>
+<li><p><a name="wp1037484"> </a>Click <b class="cBold">Create</b>. </p>
+<p>The proxy service appears in the Proxy Service Definition Editor. You can click the different subtabs to view the configuration.</p></li>
+<li><p><a name="wp1037488"> </a>Click <b class="cBold">Save</b>.</p></li>
+</ol>
+</div>
+
+<h3 class="pHeading2"><a name="wp1037448"> </a>
+Create a Pipeline
+</h3>
+<p class="pBody"><a name="wp1037499"> </a>
+Now that the business and proxy services are defined, you can create a pipeline to route incoming messages to the business service.
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<li><p><a name="wp1037449"> </a>In the Project Navigator, right-click the <b class="cBold">SocketTest</b> project, point to <b class="cBold">Create</b>, and select <b class="cBold">Pipeline</b>.</p>
+  <p>The Create Pipeline dialog appears. </p></li>
+<li><p>In the <b class="cBold">Pipeline Name</b> field, enter <code class="cCode">SocketPipeline</code>.</p></li>
+<li><p>For the <b class="cBold">Service Type</b>, select <code class="cCode">Any XML Service</code>.</p></li>
+<li><p>Deselect <b class="cBold">Expose as Proxy Service</b>, as shown in <a href="example.html#wp1038425">Figure&#160;6-5</a>. </p>
+<div class="pFigureTitle"><a name="wp1038425"> </a> Figure&#160;6-5  Creating a Pipeline</div>
+<p class="pGraphic"><a name="wp1038429"> </a>
+    <br />
+    <img src="wwimages/servicePipeline.gif" alt="Create Pipeline" /><br />
+</p></li>
+<li><p>Click <b class="cBold">Create</b>.</p>
+  <p>The pipeline appears in the Pipeline Definition Editor. You can click the different subtabs to view the configuration.</p></li>
+<li><p><a name="wp1037526"> </a>In the Pipeline Definition Editor toolbar, click the <b class="cBold">Open Message Flow</b> icon, as shown in <a href="example.html#wp1037510">Figure&#160;6-6</a>. </p>
+<div class="pFigureTitle"><a name="wp1037510"> </a>
+Figure&#160;6-6  Selecting the Message Flow Icon
+</div>
+
+
+ <p class="pGraphic"><a name="wp1042063"> </a>
+<br />
+<img src="wwimages/messageFlowIcon.gif" alt="Selecting the Message Flow Icon" id="wp1042061"/><br />
+</p>
+<p>The Edit Message Flow window appears.</p></li>
+<li><p><a name="wp1042064"> </a>Click the <b class="cBold">SocketPipeline</b> icon and select <b class="cBold">Add Route</b>, as shown in <a href="example.html#wp1037533">Figure&#160;6-7</a>.</p>
+<div class="pFigureTitle"><a name="wp1037533"> </a>
+Figure&#160;6-7  Editing the Message Flow
+</div>
+
+ <p class="pGraphic"><a name="wp1037537"> </a>
+<br />
+<img src="wwimages/addRoute.gif" alt="Editing the Message Flow" id="wp1037538"/><br />
+</p></li>
+<li><p><a name="wp1037451"> </a>Click the <b class="cBold">RouteNode1</b> icon and select <b class="cBold">Edit Route</b>. </p></li>
+<li><p><a name="wp1037549"> </a>In the Edit Stage Configuration window, click <b class="cBold">Add an Action</b> and select <b class="cBold">Communication &gt; Routing</b>, as shown in <a href="example.html#wp1037559">Figure&#160;6-8</a>. </p>
+<div class="pFigureTitle"><a name="wp1037559"> </a>
+Figure&#160;6-8  Adding an Action
+</div>
+ <p class="pGraphic"><a name="wp1037570"> </a>
+<br />
+<img src="wwimages/routing.gif" alt="Adding an Action" id="wp1037571"/><br />
+</p>
+</li>
+<li><p><a name="wp1037452"> </a>Next to <b class="cBold">Route to</b>, select <b class="cBold">&lt;Service&gt;</b>. </p></li>
+<li><p><a name="wp1037581"> </a>In the Select Service window, select <b class="cBold">SocketBS</b> and click <b class="cBold">Submit</b>. </p></li>
+<li><p><a name="wp1037453"> </a>In the Edit Stage Configuration window, click <b class="cBold">Save</b>. </p></li>
+<li><p><a name="wp1037609"> </a>Optionally, click the <b class="cBold">RouteNode1</b> icon and change the name to <b class="cBold">SocketBS</b>. </p></li>
+<li><p><a name="wp1037624"> </a>Click <b class="cBold">Save</b>. </p></li>
+</ol></div>
+<p>&nbsp;</p>
+
+<h3 class="pHeading2"><a name="wp1038399"> </a>
+Connect the Proxy Service and Pipeline
+</h3>
+<p class="pBody"><a name="wp1039864"> </a>
+In this section, you configure the proxy service to send messages to the pipeline you created.</p>
+<div class="pSmartList1">
+  <ol type="1" class="pSmartList1">
+<li><p><a name="wp1038418"> </a>In the Project Navigator, click the <b class="cBold">SocketProxy</b> proxy service.</p>
+<p>The Proxy Service Definition Editor appears. </p></li>
+<li><p><a name="wp1038082"> </a>On the General subtab of the Configuration tab, click <b class="cBold">Choose a Service Resource</b> by the <b class="cBold">Target Name</b> field. </p></li>
+<li><p><a name="wp1037467" id="wp1037467"> </a>On the Search and Select dialog, enter <code class="cCode">SocketPipeline</code> in the <b class="cBold">Name</b> field and click <b class="cBold">Search</b>.</p></li>
+<li><p>Select the pipeline in the results list, and then click <b class="cBold">OK</b>.</p></li>
+<li><p><a name="wp1037484"> </a>Click <b class="cBold">Save</b>. </p></li>
+<li><p><a name="wp1037488"> </a>Click <b class="cBold">Activate</b> to deploy the new resources to the WebLogic Server. </p></li>
+</ol>
+</div>
+<br/>
+
+<hr noshade="noshade"/>
+<h2 class="pHeading1"><a name="wp1037599"> </a>
+Testing the Socket Transport Provider
+</h2>
+<p class="pBody"><a name="wp1037638"> </a>
+The sample project includes a simple socket server and a client to test the socket transport provider. First you need to start the sample server and client, and then you can work with the Test Console to test the transport provider.
+</p>
+<div class="pSmartList1">
+  <ol type="1" class="pSmartList1">
+<li><p><a name="wp1037600"> </a>Execute the following command from the <code class="cCode">sample-transport</code> directory to start the test server:</p>
+  <p><code class="cCode">java -classpath .\test\build\test-client.jar -Dfile-encoding=utf-8 -Drequest-encoding=utf-8 <br />
+  com.bea.alsb.transports.sample.test.TestServer 7031 </code><code class="cCodeEmphasis">message-file-location</code></p>
+  <p>Where 7031 is the port number in the business service endpoint URI and <em class="cEmphasis">message-file-location</em> is the path and name of the message file to send as a response to the business service.</p></li>
+<li><p><a name="wp1037650"> </a>In the Project Navigator, click <b class="cBold">SocketPipeline</b> to open it in the Pipeline Definition Editor.</p></li>
+<li><p><a name="wp1037651"> </a>In the upper portion of the editor, click the <b class="cBold">Launch Test Console</b> icon.</p>
+<p>The Test Console appears in a new browser window.</p></li>
+
+<li><p><a name="wp1037642"> </a>In the Test Console, enter any valid XML stanza in the text area, or use the <b class="cBold">Browse</b> button to select a valid XML file on the local system. </p>
+  <p>For example, in <a href="example.html#wp1037682">Figure&#160;6-9</a>, a short XML stanza <code class="cCode"></code> is entered in the text area. </p>
+<div class="pFigureTitle"><a name="wp1037682"> </a>
+Figure&#160;6-9  Test Console</div>
+
+
+ <p class="pGraphic"><a name="wp1037686"> </a>
+<br />
+<img src="wwimages/testConsole.gif" alt="Test Console" id="wp1037687"/><br />
+</p></li>
+<li><p><a name="wp1037601"> </a>Click <b class="cBold">Execute</b>. </p>
+  <p>If the test is successful, information similar that shown in <a href="example.html#wp1037711">Figure&#160;6-10</a> appears in the Test Console. In addition, the XML text input into the Test Console is echoed in the server console. </p>
+<div class="pFigureTitle"><a name="wp1037711"> </a>
+Figure&#160;6-10  Successful Test</div>
+
+
+ <p class="pGraphic"><a name="wp1037715"> </a>
+<br />
+<img src="wwimages/testSuccess.gif" alt="Successful Test" id="wp1037716"/><br />
+</p></li>
+<li><a name="wp1037670"> </a>Close the Test Console. </li>
+</ol>
+</div>
+
+<br/>
+    <table id="SummaryNotReq2" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+
+
+
+        </td>
+      </tr>
+    </table>
+
+
+</body>
+</html>
