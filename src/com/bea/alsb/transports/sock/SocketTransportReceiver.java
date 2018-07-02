@@ -226,7 +226,7 @@ public class SocketTransportReceiver implements Runnable {
 
     private Socket as400Socket;
 
-    public WorkerThread(Socket clientSocket, SocketTransportEndPoint endPoint,
+    public As400WorkerThread(Socket clientSocket, SocketTransportEndPoint endPoint,
                         int timeout, boolean enableNagleAlgorithm, String messageDelimiter) {
       this.clientSocket = clientSocket;
       this.endPoint = endPoint;
