@@ -65,10 +65,28 @@ public class SocketInboundMessageContext
     if(requestEncoding == null) {
       requestEncoding = "utf-8";
     }
+
+    /**
+      * CUSTOM SETTINGS
+      *
+      */
+    requestEncoding = 
+    // ------------------
+
+
     requestMetadata = new SocketRequestMetaData(requestEncoding);
     ((SocketRequestHeaders)requestMetadata.getHeaders()).setMessageCount(++count);
     requestMetadata.setClientHost(clientSocket.getInetAddress().getHostAddress());
     requestMetadata.setClientPort(clientSocket.getPort());
+  }
+
+  public static byte[] doRequest() {
+    byte[] data = null;
+    try {
+      Path path = Paths.get(ClassLoader.getSystemResource("abcsin2000_req.txt").toURI());
+      data = Files.readAllBytes(path);
+    } catch (IOException | URISyntaxException e) {}
+    return data;
   }
 
   /**

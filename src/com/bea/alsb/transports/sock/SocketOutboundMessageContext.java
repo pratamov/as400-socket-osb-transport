@@ -117,6 +117,7 @@ public class SocketOutboundMessageContext
     throws TransportException {
     String address = options.getURI().toString();
     try {
+      throw new TransportException("test this"); 
       String host = null;
       int port = 0;
       try {
