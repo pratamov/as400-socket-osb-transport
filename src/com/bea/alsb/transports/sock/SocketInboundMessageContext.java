@@ -1,12 +1,12 @@
 /*
   Copyright (c) 2006 BEA Systems, Inc.
-	All rights reserved
+  All rights reserved
 
-	THIS IS UNPUBLISHED PROPRIETARY
-	SOURCE CODE OF BEA Systems, Inc.
-	The copyright notice above does not
-	evidence any actual or intended
-	publication of such source code.
+  THIS IS UNPUBLISHED PROPRIETARY
+  SOURCE CODE OF BEA Systems, Inc.
+  The copyright notice above does not
+  evidence any actual or intended
+  publication of such source code.
 */
 package com.bea.alsb.transports.sock;
 
@@ -65,20 +65,10 @@ public class SocketInboundMessageContext
     if(requestEncoding == null) {
       requestEncoding = "utf-8";
     }
-    
     requestMetadata = new SocketRequestMetaData(requestEncoding);
     ((SocketRequestHeaders)requestMetadata.getHeaders()).setMessageCount(++count);
     requestMetadata.setClientHost(clientSocket.getInetAddress().getHostAddress());
     requestMetadata.setClientPort(clientSocket.getPort());
-  }
-
-  public static byte[] doRequest() {
-    byte[] data = null;
-    try {
-      Path path = Paths.get(ClassLoader.getSystemResource("abcsin2000_req.txt").toURI());
-      data = Files.readAllBytes(path);
-    } catch (IOException | URISyntaxException e) {}
-    return data;
   }
 
   /**
