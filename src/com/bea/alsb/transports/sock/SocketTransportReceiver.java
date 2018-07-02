@@ -98,7 +98,7 @@ public class SocketTransportReceiver implements Runnable {
       /** create a worker and schedule it */
       //WorkerThread workerThread =
         //new WorkerThread(clientSocket, endPoint, timeout, enableNagleAlgorithm, messageDelimiter);
-      
+
       As400WorkerThread workerThread =
         new As400WorkerThread(clientSocket, endPoint, timeout, enableNagleAlgorithm, messageDelimiter);
 
@@ -276,7 +276,9 @@ public class SocketTransportReceiver implements Runnable {
       } catch (Exception e){
         SocketTransportUtil.logger.log(Level.SEVERE, getErrorMsg(), e);
       } finally {
-        socket.close();
+        try{
+          socket.close();
+        } catch (IOException e) {}
       }
     }
 
