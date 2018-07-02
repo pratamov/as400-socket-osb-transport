@@ -65,15 +65,7 @@ public class SocketInboundMessageContext
     if(requestEncoding == null) {
       requestEncoding = "utf-8";
     }
-
-    /**
-      * CUSTOM SETTINGS
-      *
-      */
-    requestEncoding = 
-    // ------------------
-
-
+    
     requestMetadata = new SocketRequestMetaData(requestEncoding);
     ((SocketRequestHeaders)requestMetadata.getHeaders()).setMessageCount(++count);
     requestMetadata.setClientHost(clientSocket.getInetAddress().getHostAddress());
