@@ -245,11 +245,7 @@ public class SocketTransportReceiver implements Runnable {
     public void initialize_as400(){
       try {
         as400Socket = new Socket("10.35.65.108", 4601);
-      } catch (TransportException e) {
-        SocketTransportUtil.logger.log(Level.SEVERE, getErrorMsg(), e);
-      } catch (IOException e) {
-        SocketTransportUtil.logger.log(Level.SEVERE, getErrorMsg(), e);
-      } catch (MessageFormatException e) {
+      } catch (Exception e) {
         SocketTransportUtil.logger.log(Level.SEVERE, getErrorMsg(), e);
       }
     }
@@ -276,8 +272,6 @@ public class SocketTransportReceiver implements Runnable {
       } catch (TransportException e) {
         SocketTransportUtil.logger.log(Level.SEVERE, getErrorMsg(), e);
       } catch (IOException e) {
-        SocketTransportUtil.logger.log(Level.SEVERE, getErrorMsg(), e);
-      } catch (MessageFormatException e) {
         SocketTransportUtil.logger.log(Level.SEVERE, getErrorMsg(), e);
       } catch (Exception e){
         SocketTransportUtil.logger.log(Level.SEVERE, getErrorMsg(), e);
