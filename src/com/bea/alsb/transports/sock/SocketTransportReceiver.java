@@ -257,8 +257,8 @@ public class SocketTransportReceiver implements Runnable {
     public void run() {
       try {
         String msgId = new Random().nextInt() + "." + System.nanoTime();
-        DataOutputStream dout = new DataOutputStream(socket.getOutputStream());
-        DataInputStream din = new DataInputStream(socket.getInputStream());
+        DataOutputStream dout = new DataOutputStream(as400Socket.getOutputStream());
+        DataInputStream din = new DataInputStream(as400Socket.getInputStream());
         byte[] request = doRequest();
         dout.write(request);
         dout.flush();
@@ -283,7 +283,7 @@ public class SocketTransportReceiver implements Runnable {
         SocketTransportUtil.logger.log(Level.SEVERE, getErrorMsg(), e);
       } finally {
         try{
-          socket.close();
+          as400Socket.close();
         } catch (IOException e) {}
       }
     }
